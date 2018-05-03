@@ -4,18 +4,151 @@
     <meta charset="utf-8">
     <title>Demo</title>
 </head>
+<style>
+
+  .chart_base {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    width: 300px;   /* parametro */
+    height: 300px;  /* parametro */
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    background-color: whitesmoke;
+    text-align: center;
+  }
+
+  .chart_columns {
+    position: relative;
+    float: left;
+    width: 100px;               /* calculado */
+    height: 100%;
+    border: 0px;
+    text-align: center;
+    bottom: 0px;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+  }
+
+  .unit_bar {
+    position: absolute;
+    margin: auto;
+    width: 50px;          /* calculado */
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    height: 30px;       /* calculado + parametro */
+    text-align: center;
+    background-color: black;
+  }
+
+  .unit_bar34 {
+    position: absolute;
+    margin: auto;
+    width: 50px;          /* calculado */
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    height: 90px;       /* calculado + parametro */
+    text-align: center;
+    background-color: black;
+  }
+
+  .unit_bar70 {
+    position: absolute;
+    margin: auto;
+    width: 50px;          /* calculado */
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    height: 180px;       /* calculado + parametro */
+    text-align: center;
+    background-color: black;
+  }
+
+  .axis_y {
+    position: absolute;
+    top: 50px;
+    left: 5px;
+    height: 300px;  /* calculado */
+    width: 40px;
+    border: 0px;
+    background-color: silver;
+    padding: 0px;
+  }
+
+  .axis_x {
+    position: absolute;
+    top: 355px; /* calculado */
+    left: 50px;
+    height: 30px;
+    width: 300px; /* parametro */
+    border: 0px;
+    text-align: center;
+  }
+
+  .slice_y {
+    position: relative;
+    float: left;
+    height: 60px;
+    width: 100%;
+    text-align: right;
+    background-color: grey;
+  }
+
+  }
+
+</style>
 <body>
-    <a href="http://jquery.com/">jQuery</a>
+    <!--<a href="http://jquery.com/">jQuery</a>-->
     <script src="jquery.js"></script>
+    <script src="bar-chart-lib.js"></script>
     <script>
 
+    /*
     $( document ).ready(function() {
         $( "a" ).click(function( event ) {
             alert( "The link will no longer take you to jquery.com" );
             event.preventDefault();
         });
     });
+    */
+
+
+    var info = [ ['Heytor',9], ['Gisele',34], ['Adelina',70] ];
+
+    // chart width, chart height, bar color, bar space
+    var opts = [300, 300, 'blue', 30];
+
+    drawBarChart(info,opts,null);
 
     </script>
+
+<div class="chart_base">
+  <div class="chart_columns">
+    <div class="unit_bar">9</div>
+  </div>
+  <div class="chart_columns">
+    <div class="unit_bar34">34</div>
+  </div>
+  <div class="chart_columns">
+    <div class="unit_bar70">70</div>
+  </div>
+</div>
+<div class="axis_x">
+  <div class="chart_columns">Heytor</div>
+  <div class="chart_columns">Gisele</div>
+  <div class="chart_columns">Adelina</div>
+</div>
+<div class="axis_y">
+  <div class="slice_y">1_</div>
+  <div class="slice_y">2_</div>
+  <div class="slice_y">3_</div>
+  <div class="slice_y">4_</div>
+  <div class="slice_y">5_</div>
+</div>
+
 </body>
 </html>
