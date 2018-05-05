@@ -6,9 +6,14 @@
 </head>
 <style>
 
-  .chart_base {
+  #container {
     position: absolute;
-    top: 50px;
+    top: 100px;
+  }
+
+  #chart_base {
+    position: absolute;
+    top: 5px;
     left: 50px;
     width: 300px;   /* parametro */
     height: 300px;  /* parametro */
@@ -18,7 +23,7 @@
     text-align: center;
   }
 
-  .chart_columns {
+  #chart_columns {
     position: relative;
     float: left;
     width: 100px;               /* calculado */
@@ -32,7 +37,7 @@
     align-content: center;
   }
 
-  .unit_bar {
+  #unit_bar {
     position: absolute;
     margin: auto;
     width: 50px;          /* calculado */
@@ -44,7 +49,7 @@
     background-color: black;
   }
 
-  .unit_bar34 {
+  #unit_bar34 {
     position: absolute;
     margin: auto;
     width: 50px;          /* calculado */
@@ -56,7 +61,7 @@
     background-color: black;
   }
 
-  .unit_bar70 {
+  #unit_bar70 {
     position: absolute;
     margin: auto;
     width: 50px;          /* calculado */
@@ -68,9 +73,9 @@
     background-color: black;
   }
 
-  .axis_y {
+  #axis_y {
     position: absolute;
-    top: 50px;
+    top: 5px;
     left: 5px;
     height: 300px;  /* calculado */
     width: 40px;
@@ -79,9 +84,9 @@
     padding: 0px;
   }
 
-  .axis_x {
+  #axis_x {
     position: absolute;
-    top: 355px; /* calculado */
+    top: 310px; /* calculado */
     left: 50px;
     height: 30px;
     width: 300px; /* parametro */
@@ -89,7 +94,7 @@
     text-align: center;
   }
 
-  .slice_y {
+  #slice_y {
     position: relative;
     float: left;
     height: 60px;
@@ -119,36 +124,33 @@
 
     var info = [ ['Heytor',9], ['Gisele',34], ['Adelina',70] ];
 
-    // chart width, chart height, bar color, bar space
-    var opts = [300, 300, 'blue', 30];
+    /*
+    chart width
+    chart height
+    bar color
+    axis y - quantity of values
+    axis y - lower limit
+    axis y - higher limit
+    */
+    var opts = [300, 300, 'blue', 10, 0, 100];
 
     drawBarChart(info,opts,null);
 
     </script>
 
-<div class="chart_base">
-  <div class="chart_columns">
-    <div class="unit_bar">9</div>
+<!--
+<div id="chart_base">
+  <div id="chart_columns">
+    <div id="unit_bar">9</div>
   </div>
-  <div class="chart_columns">
-    <div class="unit_bar34">34</div>
+  <div id="chart_columns">
+    <div id="unit_bar34">34</div>
   </div>
-  <div class="chart_columns">
-    <div class="unit_bar70">70</div>
+  <div id="chart_columns">
+    <div id="unit_bar70">70</div>
   </div>
 </div>
-<div class="axis_x">
-  <div class="chart_columns">Heytor</div>
-  <div class="chart_columns">Gisele</div>
-  <div class="chart_columns">Adelina</div>
-</div>
-<div class="axis_y">
-  <div class="slice_y">1_</div>
-  <div class="slice_y">2_</div>
-  <div class="slice_y">3_</div>
-  <div class="slice_y">4_</div>
-  <div class="slice_y">5_</div>
-</div>
+-->
 
 </body>
 </html>

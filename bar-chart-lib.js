@@ -1,3 +1,90 @@
+// global variables to control the options parameters
+var chart_width;      // width of the chart
+var chart_height;     // height of the chart
+var bar_color;        // color of each bar
+var y_quantity;       // quantity of itens in axis y (number)
+var y_lower_limit;    // lower limit of axis y (number)
+var y_higher_limit;   // higher limit of axis y (number)
+
+// global variables to control the function
+var item_bar_height;  // height of each item bar in axis y
+var style_bar_width;   // style of each item bar in axis x
+
+
+// sort an array by numbers descending
+function sortArray(data) {
+
+  var res = [];
+  var num = data[0];
+  var pos;
+
+  while (res.length != data.length) {
+
+    for (var i=0; i<data.length; i++) {
+
+      if ( num < data[i] && (res.indexOf(data[i]) < 0) ) {
+        num = data[i];
+      }
+    }
+
+    res.push(num);
+    num = 0;
+  }
+
+  return res;
+}
+
+// create random numbers how many times parameters ask
+function createRandomNumbers(data,times) {
+
+  var res = data;
+
+  // we get the min and max number in the y-axis
+  var min = getLimitNumber(res,'min');
+  var max = getLimitNumber(res,'max');
+
+  var total = 0;
+
+  while (total != times) {
+
+    var rand_number = Math.floor(Math.random() * (max - min + 1)) + min;
+
+    if (res.indexOf(rand_number) < 0) {
+      res.push(rand_number);
+      total += 1;
+    }
+
+  }
+
+  return res;
+
+}
+
+// function to validate options parameter
+function validateOptions(options) {
+
+  if ((Array.isArray(options)) && options.length > 0) {
+
+    for (var i=0; i<options.length; i++) {
+
+      switch(i) {
+
+        case 0: chart_width = options[i];     break;
+        case 1: chart_height = options[i];    break;
+        case 2: bar_color = options[i];       break;
+        case 3: y_quantity = options[i];      break;
+        case 4: y_lower_limit = options[i];   break;
+        case 5: y_higher_limit = options[i];  break;
+        default: break;
+
+      }
+
+    }
+
+  }
+
+}
+
 // function that return a specific array of value or label
 // of the chart
 function getSpecValue(data,type) {
@@ -33,23 +120,126 @@ function getLimitNumber(data,type) {
 }
 
 // function that creates the array for a specific axis
-function createAxis(data, gap, axis) {
+function createAxis(data, quant, lower, higher) {
+
+  var res = data;
+  var sorted = [];
+  var total = 0;
+
+  // how many itens we need to include
+  var dif = quant - data.length;
+
+  // if we didnt need extra numbers we return the same array
+  if (dif < 0) {
+    return data;
+  }
 
   // we get the min and max number in the y-axis
   var min = getLimitNumber(data,'min');
   var max = getLimitNumber(data,'max');
 
-  document.write(min);
-  document.write(max);
+  // if the lower limit is lower than the min value,
+  // we push this number to the return array
+  if (lower < min) {
+    res.push(lower);
+    dif -= 1;
+  }
 
+  // we do the same with the highest value against
+  // the max value of the array
+  if (higher > max) {
+    res.push(higher);
+    dif -= 1;
+  }
+
+  res = createRandomNumbers(res,dif);
+  res = sortArray(res);
+
+  return res;
 
 }
 
-function displayAxis(data,opts, axis) {
+// function to draw the labels of axis X
+function drawAxisX(data) {
 
-  document.write(data);
-  document.write(opts);
-  document.write(axis);
+  // style variation for the div of axis x
+  var top = Number(chart_width + 10);
+  var style = "top:" + top + "px;width:" + chart_width + "px;";
+
+  // style variation for each item inside
+  // width of each item is defined by chart width / quantity of itens
+  var item_width = (chart_width / data.length).toFixed(0) - 1;
+
+  var style_i = "width:" + item_width + "px;";
+  style_bar_width = style_i;
+
+  var html = "<div id='axis_x' style='" + style + "'>";
+
+  for (var i=0; i<data.length; i++) {
+    html += "<div id='chart_columns' style='" + style_i + "'>" + data[i] + "</div>";
+  }
+  html += "</div>";
+
+  document.write(html);
+
+}
+
+
+// function to draw the values in axis Y
+function drawAxisY(data) {
+
+  var style = "height:" + chart_height + "px;";
+
+  var html = "<div id='axis_y' style='" + style + "'>";
+
+  var item_height = chart_height / data.length;
+
+  item_bar_height = item_height;
+
+  style_i = "height:" + item_height + "px;";
+
+  for (var i=0; i<data.length; i++) {
+    html += "<div id='slice_y' style='" + style_i + "'>" + data[i] + "</div>";
+  }
+
+  html += "</div>";
+
+  document.write(html);
+
+}
+
+function drawBars(data,axis) {
+
+  var item_height = 0;
+
+  var html = "";
+
+  var style = "width:" + chart_width + "px;";
+  style += "height:" + chart_height + "px;";
+
+  html += "<div id='chart_base' style='" + style + "'>";
+
+  for (var i=0; i<data.length; i++) {
+
+    for (var j=axis.length-1; j>=0; j--) {
+
+      item_height += item_bar_height;
+
+      if (axis[j] === data[i]) {
+        var unit_style = "height:" + item_height + "px;";
+        html += "<div id='chart_columns' style='" + style_bar_width + "'>";
+        html += "<div id='unit_bar' style='" + unit_style + "'>";
+        html += data[i] + "</div></div>";
+      }
+    }
+
+    item_height = 0;
+
+  }
+
+  html += "</div>";
+
+  document.write(html);
 
 }
 
@@ -69,32 +259,35 @@ or jQuery element that the chart will get rendered into.
 
 */
 
-  var valores = [];
+  var sorted = [];
+  var values = [];
+  var original_values = [];
   var axis_x = [];
   var axis_y = [];
-  var itens = 0;
 
+  // Validation of options parameter
+  validateOptions(options);
 
-// Data parameter
+  // Validation of data parameter
   if ((Array.isArray(data)) && data.length > 0) {
 
-    valores = getSpecValue(data,'values');
+    // we separate values from labels
+    values = getSpecValue(data,'values');
     axis_x = getSpecValue(data,'label');
-    //axis_y = createAxis(valores,'y');
-    //itens = axis_x.length;
-    displayAxis(axis_x, options, 'x');
+
+    // we create others numbers between the values
+    axis_y = createAxis(values, y_quantity, y_lower_limit, y_higher_limit);
+
+    drawAxisX(axis_x);     // draw the labels in axis x
+    drawAxisY(axis_y);     // draw the limits in axis y
+
+    // draw the bars of the chart
+    original_values = getSpecValue(data,'values');
+    drawBars(original_values,axis_y);
 
   } else {
     console.log('expected any data to create the bar chart');
   }
 
 }
-
-/*
-var info = [ ['Heytor',9], ['Gisele',34], ['Adelina',70] ];
-var opts = [];
-drawBarChart(info,opts,null);
-*/
-
-
 
