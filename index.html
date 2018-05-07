@@ -8,10 +8,42 @@
 
   #container {
     position: relative;
+    width:100%;
+    float: left;
+  }
+
+  #chart {
+    clear: both;
+    display: inline-block;
+    width:100%;
+  }
+
+  #chart_y {
+    position:relative;
+    float:left;
+    width: 10%;
+    background-color: silver;
+    height:100%;
+  }
+
+  #chart_content {
+    position: relative;
+    float:right;
+    width: 90%;
+    height:100%;
+  }
+
+  #chart_x {
+    position: relative;
+    float:right;
+    width: 90%;
+    background-color: black;
+    color:white;
+    height:100%;
   }
 
   #chart_base {
-    position: absolute;
+    position: relative;
     top: 5px;
     left: 50px;
     width: 300px;   /* parametro */
@@ -83,6 +115,18 @@
     padding: 0px;
   }
 
+  #axis_x_relative {
+    position: relative;
+    top: 10px;
+    left: 50px;
+    height: 30px;
+    width: 300px;   /* parametro */
+    border: 0px;
+    text-align: left;
+    background-color: black;
+    color:white;
+  }
+
   #axis_x {
     position: absolute;
     top: 310px; /* calculado */
@@ -107,7 +151,7 @@
 </style>
 <body>
 
-    <div id=container></div>
+    <!--<div id=container></div>-->
 
     <script src="jquery.js"></script>
     <script src="bar-chart-lib.js"></script>
@@ -124,7 +168,8 @@
     // axis y - quantity of values, lower limit, higher limit
     var opts_1 = [300, 300, 'lightgreen', 10, 0, 100];
 
-    drawBarChart(info_1,opts_1,"container");
+    //drawBarChart(info_1,opts_1,"container");
+    //drawBarChart(info_1,opts_1,null);
     // ==========================================================
 
 
@@ -139,10 +184,29 @@
     // axis y - quantity of values, lower limit, higher limit
     var opts_2 = [400, 300, 'blue', 10, 0, 100];
 
-    //drawBarChart(info_2,opts_2,"container");
-
+    //drawBarChart(info_2,opts_2,"chart");
 
     </script>
+
+
+    <div id=container>
+
+      <div id=chart>
+        <div id=chart_y>axis y</div>
+        <div id=chart_content>content</div>
+        <div id=chart_x>axis x</div>
+      </div>
+
+      <div id=chart>&nbsp;</div>
+
+      <div id=chart>
+        <div id=chart_y>axis y</div>
+        <div id=chart_content>content</div>
+        <div id=chart_x>axis x</div>
+      </div>
+
+    </div>
+
 
 </body>
 </html>

@@ -164,7 +164,8 @@ function drawAxisX(data) {
 
   // style variation for the div of axis x
   var top = Number(chart_height + 10);
-  var style = "top:" + top + "px;width:" + chart_width + "px;";
+  //var style = "top:" + top + "px;width:" + chart_width + "px;";
+  var style = "width:" + chart_width + "px;";
 
   // style variation for each item inside
   // width of each item is defined by chart width / quantity of itens
@@ -180,7 +181,6 @@ function drawAxisX(data) {
   }
   html += "</div>";
 
-  //document.write(html);
   return html;
 
 }
@@ -205,7 +205,6 @@ function drawAxisY(data) {
 
   html += "</div>";
 
-  //document.write(html);
   return html;
 
 }
@@ -242,7 +241,8 @@ function drawBars(data,axis) {
 
   html += "</div>";
 
-  //document.write(html);
+  //html += "<div id=axis_x_relative>teste</div>";
+
   return html;
 
 }
@@ -292,13 +292,14 @@ or jQuery element that the chart will get rendered into.
     original_values = getSpecValue(data,'values');
     result += drawBars(original_values,axis_y);
 
-    if (htmlElement != null || htmlElement != "") {
-      //document.getElementById(htmlElement).innerHTML = result;
-      element = document.getElementById(htmlElement);
-      element.innerHTML += "<div>" + result + "</div>";
-    }
-    else {
+    //result += drawAxisX(axis_x);     // draw the labels in axis x
+    //result += "<div id=axis_x_relative>teste</div>";
+
+    if (htmlElement === null) {
       document.write(result);
+    } else {
+      element = document.getElementById(htmlElement);
+      element.innerHTML += result;
     }
 
   } else {
