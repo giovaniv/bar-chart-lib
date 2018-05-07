@@ -7,8 +7,7 @@
 <style>
 
   #container {
-    position: absolute;
-    top: 100px;
+    position: relative;
   }
 
   #chart_base {
@@ -107,50 +106,43 @@
 
 </style>
 <body>
-    <!--<a href="http://jquery.com/">jQuery</a>-->
+
+    <div id=container></div>
+
     <script src="jquery.js"></script>
     <script src="bar-chart-lib.js"></script>
     <script>
 
-    /*
-    $( document ).ready(function() {
-        $( "a" ).click(function( event ) {
-            alert( "The link will no longer take you to jquery.com" );
-            event.preventDefault();
-        });
-    });
-    */
+    // ==========================================================
+    // EXAMPLE 1: DATA WITH NAMES AND RESPECTIVE AGES
+    // data
+    var info_1 = [ ['Heytor',9], ['Gisele',34], ['Adelina',70],
+                 ['Giovani',35], ['Patt',31] ];
+
+    // options
+    // chart width, chart height, bar color
+    // axis y - quantity of values, lower limit, higher limit
+    var opts_1 = [300, 300, 'lightgreen', 10, 0, 100];
+
+    drawBarChart(info_1,opts_1,"container");
+    // ==========================================================
 
 
-    var info = [ ['Heytor',9], ['Gisele',34], ['Adelina',70] ];
+    // ==========================================================
+    // EXAMPLE 2: DATA WITH PEOPLE AND ART MARTIAL STYLES
+    // data
+    var info_2 = [ ['Judo',15], ['Krav Maga',7], ['Kung Fu',3],
+                 ['MMA',40], ['Jiu-Jitsu',25] ];
 
-    /*
-    chart width
-    chart height
-    bar color
-    axis y - quantity of values
-    axis y - lower limit
-    axis y - higher limit
-    */
-    var opts = [300, 300, 'blue', 10, 0, 100];
+    // options
+    // chart width, chart height, bar color
+    // axis y - quantity of values, lower limit, higher limit
+    var opts_2 = [400, 300, 'blue', 10, 0, 100];
 
-    drawBarChart(info,opts,null);
+    //drawBarChart(info_2,opts_2,"container");
+
 
     </script>
-
-<!--
-<div id="chart_base">
-  <div id="chart_columns">
-    <div id="unit_bar">9</div>
-  </div>
-  <div id="chart_columns">
-    <div id="unit_bar34">34</div>
-  </div>
-  <div id="chart_columns">
-    <div id="unit_bar70">70</div>
-  </div>
-</div>
--->
 
 </body>
 </html>

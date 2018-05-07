@@ -163,7 +163,7 @@ function createAxis(data, quant, lower, higher) {
 function drawAxisX(data) {
 
   // style variation for the div of axis x
-  var top = Number(chart_width + 10);
+  var top = Number(chart_height + 10);
   var style = "top:" + top + "px;width:" + chart_width + "px;";
 
   // style variation for each item inside
@@ -180,7 +180,8 @@ function drawAxisX(data) {
   }
   html += "</div>";
 
-  document.write(html);
+  //document.write(html);
+  return html;
 
 }
 
@@ -204,7 +205,8 @@ function drawAxisY(data) {
 
   html += "</div>";
 
-  document.write(html);
+  //document.write(html);
+  return html;
 
 }
 
@@ -227,6 +229,7 @@ function drawBars(data,axis) {
 
       if (axis[j] === data[i]) {
         var unit_style = "height:" + item_height + "px;";
+        unit_style += "background-color:" + bar_color + ";";
         html += "<div id='chart_columns' style='" + style_bar_width + "'>";
         html += "<div id='unit_bar' style='" + unit_style + "'>";
         html += data[i] + "</div></div>";
@@ -239,12 +242,13 @@ function drawBars(data,axis) {
 
   html += "</div>";
 
-  document.write(html);
+  //document.write(html);
+  return html;
 
 }
 
 // main function
-function drawBarChart(data, options, element) {
+function drawBarChart(data, options, htmlElement) {
 /*
 The ​data​ parameter will be the data the chart
 should work from. Start with just an Array of numbers
@@ -254,7 +258,7 @@ The ​options​ parameter should be an object which
 has options for the chart.
 - e.g. ​width​and ​height​of the bar chart
 
-The ​element​ parameter should be a DOM element
+The htmlElement parameter should be a DOM element
 or jQuery element that the chart will get rendered into.
 
 */
@@ -264,6 +268,8 @@ or jQuery element that the chart will get rendered into.
   var original_values = [];
   var axis_x = [];
   var axis_y = [];
+  var result = "";
+  var element = "";
 
   // Validation of options parameter
   validateOptions(options);
@@ -278,12 +284,22 @@ or jQuery element that the chart will get rendered into.
     // we create others numbers between the values
     axis_y = createAxis(values, y_quantity, y_lower_limit, y_higher_limit);
 
-    drawAxisX(axis_x);     // draw the labels in axis x
-    drawAxisY(axis_y);     // draw the limits in axis y
+
+    result += drawAxisX(axis_x);     // draw the labels in axis x
+    result += drawAxisY(axis_y);     // draw the limits in axis y
 
     // draw the bars of the chart
     original_values = getSpecValue(data,'values');
-    drawBars(original_values,axis_y);
+    result += drawBars(original_values,axis_y);
+
+    if (htmlElement != null || htmlElement != "") {
+      //document.getElementById(htmlElement).innerHTML = result;
+      element = document.getElementById(htmlElement);
+      element.innerHTML += "<div>" + result + "</div>";
+    }
+    else {
+      document.write(result);
+    }
 
   } else {
     console.log('expected any data to create the bar chart');
