@@ -162,24 +162,36 @@ function createAxis(data, quant, lower, higher) {
 // function to draw the labels of axis X
 function drawAxisX(data) {
 
+  var top;
+  var style;
+  var item_width;
+  var style_i;
+  var html;
+
   // style variation for the div of axis x
-  var top = Number(chart_height + 10);
+  top = Number(chart_height + 10);
+
   //var style = "top:" + top + "px;width:" + chart_width + "px;";
-  var style = "width:" + chart_width + "px;";
+  style = "width:" + chart_width + "px;";
 
   // style variation for each item inside
   // width of each item is defined by chart width / quantity of itens
-  var item_width = (chart_width / data.length).toFixed(0) - 1;
+  item_width = (chart_width / data.length).toFixed(0) - 1;
 
-  var style_i = "width:" + item_width + "px;";
+  style_i = "width:" + item_width + "px;";
   style_bar_width = style_i;
 
-  var html = "<div id='axis_x' style='" + style + "'>";
+  // all of the content will be inside this div id
+  html = "<div id=chart_x>";
+
+  //html += "<div id='axis_x' style='" + style + "'>";
 
   for (var i=0; i<data.length; i++) {
     html += "<div id='chart_columns' style='" + style_i + "'>" + data[i] + "</div>";
   }
   html += "</div>";
+
+  //console.log(html);
 
   return html;
 
@@ -189,11 +201,18 @@ function drawAxisX(data) {
 // function to draw the values in axis Y
 function drawAxisY(data) {
 
-  var style = "height:" + chart_height + "px;";
+  var style;
+  var html;
+  var item_height;
 
-  var html = "<div id='axis_y' style='" + style + "'>";
+  // all of the content will be inside this div id
+  html = "<div id=chart_y>";
 
-  var item_height = chart_height / data.length;
+  style = "height:" + chart_height + "px;";
+
+  html += "<div id='axis_y' style='" + style + "'>";
+
+  item_height = chart_height / data.length;
 
   item_bar_height = item_height;
 
@@ -203,7 +222,7 @@ function drawAxisY(data) {
     html += "<div id='slice_y' style='" + style_i + "'>" + data[i] + "</div>";
   }
 
-  html += "</div>";
+  html += "</div></div>";
 
   return html;
 
@@ -213,7 +232,7 @@ function drawBars(data,axis) {
 
   var item_height = 0;
 
-  var html = "";
+  var html = "<div id=chart_content>";
 
   var style = "width:" + chart_width + "px;";
   style += "height:" + chart_height + "px;";
@@ -239,9 +258,9 @@ function drawBars(data,axis) {
 
   }
 
-  html += "</div>";
+  html += "</div></div>";
 
-  //html += "<div id=axis_x_relative>teste</div>";
+  console.log(html);
 
   return html;
 
@@ -284,16 +303,34 @@ or jQuery element that the chart will get rendered into.
     // we create others numbers between the values
     axis_y = createAxis(values, y_quantity, y_lower_limit, y_higher_limit);
 
+    //we start to draw our result html page
+    result += "<div id=chart>";
 
-    result += drawAxisX(axis_x);     // draw the labels in axis x
     result += drawAxisY(axis_y);     // draw the limits in axis y
 
     // draw the bars of the chart
     original_values = getSpecValue(data,'values');
     result += drawBars(original_values,axis_y);
 
+    result += drawAxisX(axis_x);     // draw the labels in axis x
+
+
+    /*
+    result += drawAxisX(axis_x);     // draw the labels in axis x
+    result += drawAxisY(axis_y);     // draw the limits in axis y
+    console.log(result);
+
+    // draw the bars of the chart
+    original_values = getSpecValue(data,'values');
+    result += drawBars(original_values,axis_y);
+    */
     //result += drawAxisX(axis_x);     // draw the labels in axis x
     //result += "<div id=axis_x_relative>teste</div>";
+
+    // we guarantee that it will be a space between this and the next chart
+    result += "</div><div id=chart>&nbsp;</div>";
+
+    //console.log(result);
 
     if (htmlElement === null) {
       document.write(result);
