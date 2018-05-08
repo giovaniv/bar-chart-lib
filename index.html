@@ -3,214 +3,29 @@
 <head>
     <meta charset="utf-8">
     <title>Demo</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<style>
-
-  #container {
-    position: relative;
-    width:100%;
-    float: left;
-  }
-
-  #chart {
-    clear: both;
-    display: inline-block;
-    width:100%;
-  }
-
-  #chart_y {
-    position:relative;
-    float:left;
-    width: 10%;
-    background-color: silver;
-    height:100%;
-  }
-
-  #chart_content {
-    position: relative;
-    float:right;
-    width: 90%;
-    height:100%;
-  }
-
-  #chart_x {
-    position: relative;
-    float:right;
-    width: 90%;
-    background-color: black;
-    color:white;
-    height:100%;
-  }
-
-  #chart_base {
-    position: relative;
-    top: 5px;
-    left: 50px;
-    width: 300px;   /* parametro */
-    height: 300px;  /* parametro */
-    border-left: 1px solid black;
-    border-bottom: 1px solid black;
-    background-color: whitesmoke;
-    text-align: center;
-  }
-
-  #chart_columns {
-    position: relative;
-    float: left;
-    width: 100px;               /* calculado */
-    height: 100%;
-    border: 0px;
-    text-align: center;
-    bottom: 0px;
-    justify-content: center;
-    align-items: center;
-    align-self: center;
-    align-content: center;
-  }
-
-  #unit_bar {
-    position: absolute;
-    margin: auto;
-    width: 50px;          /* calculado */
-    bottom: 0px;
-    left: 0;
-    right: 0;
-    height: 30px;       /* calculado + parametro */
-    text-align: center;
-    background-color: black;
-  }
-
-  #unit_bar34 {
-    position: absolute;
-    margin: auto;
-    width: 50px;          /* calculado */
-    bottom: 0px;
-    left: 0;
-    right: 0;
-    height: 90px;       /* calculado + parametro */
-    text-align: center;
-    background-color: black;
-  }
-
-  #unit_bar70 {
-    position: absolute;
-    margin: auto;
-    width: 50px;          /* calculado */
-    bottom: 0px;
-    left: 0;
-    right: 0;
-    height: 180px;       /* calculado + parametro */
-    text-align: center;
-    background-color: black;
-  }
-
-  #axis_y {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    height: 300px;  /* calculado */
-    width: 40px;
-    border: 0px;
-    background-color: silver;
-    padding: 0px;
-  }
-
-  #axis_x_relative {
-    position: relative;
-    top: 10px;
-    left: 50px;
-    height: 30px;
-    width: 300px;   /* parametro */
-    border: 0px;
-    text-align: left;
-    background-color: black;
-    color:white;
-  }
-
-  #axis_x {
-    position: absolute;
-    top: 310px; /* calculado */
-    left: 50px;
-    height: 30px;
-    width: 300px; /* parametro */
-    border: 0px;
-    text-align: center;
-  }
-
-  #slice_y {
-    position: relative;
-    float: left;
-    height: 60px;
-    width: 100%;
-    text-align: right;
-    background-color: grey;
-  }
-
-  }
-
-</style>
 <body>
 
-    <!--<div id=container></div>-->
+    <div id=container></div>
 
-    <script src="jquery.js"></script>
     <script src="bar-chart-lib.js"></script>
+
     <script>
+    // ===============================================================
+    // Example A: Names and the respective ages of a group of people
+    // Options: chart width, chart height, bar color, axis y - quantity of values, axis y - lower limit, axis y - higher limit
+    var data = [ ['Heytor',9], ['Gisele',34], ['Adelina',70], ['Giovani',35], ['Patt',31] ];
+    var options = [300, 300, 'lightgreen', 10, 0, 100];
+    //drawBarChart(data,options,"container");
 
-    // ==========================================================
-    // EXAMPLE 1: DATA WITH NAMES AND RESPECTIVE AGES
-    // data
-    var info_1 = [ ['Heytor',9], ['Gisele',34], ['Adelina',70],
-                 ['Giovani',35], ['Patt',31] ];
-
-    // options
-    // chart width, chart height, bar color
-    // axis y - quantity of values, lower limit, higher limit
-    var opts_1 = [300, 300, 'lightgreen', 10, 0, 100];
-
-    //drawBarChart(info_1,opts_1,"container");
-    //drawBarChart(info_1,opts_1,null);
-    // ==========================================================
-
-
-    // ==========================================================
-    // EXAMPLE 2: DATA WITH PEOPLE AND ART MARTIAL STYLES
-    // data
-    var info_2 = [ ['Judo',15], ['Krav Maga',7], ['Kung Fu',3],
-                 ['MMA',40], ['Jiu-Jitsu',25] ];
-
-    // options
-    // chart width, chart height, bar color
-    // axis y - quantity of values, lower limit, higher limit
-    var opts_2 = [400, 300, 'blue', 10, 0, 100];
-
-    //drawBarChart(info_2,opts_2,"chart");
-
+    // ===============================================================
+    // Example B: Martial Arts and the quantity of students in each one
+    // Options: chart width, chart height, bar color, axis y - quantity of values, axis y - lower limit, axis y - higher limit
+    var data2 = [ ['Judo',15], ['Krav Maga',7], ['Kung Fu',3], ['MMA',40], ['Jiu-Jitsu',25] ];
+    var options2 = [400, 300, 'blue', 10, 0, 100];
+    //drawBarChart(data2,options2,"container");
     </script>
-
-
-    <div id=container>
-      <div id=chart>
-        <div id=chart_y>axis y</div>
-        <!--<div id=chart_content>-->
-
-        <div id=chart_content>
-          <div id='chart_base' style='width:300px;height:300px;'>
-            <div id='chart_columns' style='undefined'><div id='unit_bar' style='height:60px;background-color:lightgreen;'>9</div></div>
-            <div id='chart_columns' style='undefined'><div id='unit_bar' style='height:120px;background-color:lightgreen;'>34</div></div>
-            <div id='chart_columns' style='undefined'><div id='unit_bar' style='height:270px;background-color:lightgreen;'>70</div></div>
-            <div id='chart_columns' style='undefined'><div id='unit_bar' style='height:150px;background-color:lightgreen;'>35</div></div>
-            <div id='chart_columns' style='undefined'><div id='unit_bar' style='height:90px;background-color:lightgreen;'>31</div></div>
-          </div>
-        </div>
-
-
-        <!--</div>-->
-        <div id=chart_x>axis x</div>
-      </div>
-      <div id=chart>&nbsp;</div>
-    </div>
-
 
 </body>
 </html>

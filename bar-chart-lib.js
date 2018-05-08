@@ -162,36 +162,32 @@ function createAxis(data, quant, lower, higher) {
 // function to draw the labels of axis X
 function drawAxisX(data) {
 
-  var top;
-  var style;
   var item_width;
+  var style;
   var style_i;
   var html;
-
-  // style variation for the div of axis x
-  top = Number(chart_height + 10);
-
-  //var style = "top:" + top + "px;width:" + chart_width + "px;";
-  style = "width:" + chart_width + "px;";
 
   // style variation for each item inside
   // width of each item is defined by chart width / quantity of itens
   item_width = (chart_width / data.length).toFixed(0) - 1;
-
+  style = "width:" + chart_width + "px;background-color:black;";
   style_i = "width:" + item_width + "px;";
-  style_bar_width = style_i;
 
   // all of the content will be inside this div id
-  html = "<div id=chart_x>";
-
-  //html += "<div id='axis_x' style='" + style + "'>";
+  console.log(style);
+  //html = "&nbsp;<div id='chart_x' style='" + style + "'>";
+  html = "&nbsp;<div id=chart_x style='background-color:black;width:400px;'>";
 
   for (var i=0; i<data.length; i++) {
-    html += "<div id='chart_columns' style='" + style_i + "'>" + data[i] + "</div>";
+    html += "<div id='columns' style='" + style_i + "'>" + data[i] + "</div>";
   }
-  html += "</div>";
+  html += "</div></div>";
 
-  //console.log(html);
+
+  console.log('== start x ==');
+  console.log(html);
+  console.log('== end x ==');
+
 
   return html;
 
@@ -201,16 +197,11 @@ function drawAxisX(data) {
 // function to draw the values in axis Y
 function drawAxisY(data) {
 
-  var style;
   var html;
   var item_height;
 
   // all of the content will be inside this div id
   html = "<div id=chart_y>";
-
-  style = "height:" + chart_height + "px;";
-
-  html += "<div id='axis_y' style='" + style + "'>";
 
   item_height = chart_height / data.length;
 
@@ -222,7 +213,13 @@ function drawAxisY(data) {
     html += "<div id='slice_y' style='" + style_i + "'>" + data[i] + "</div>";
   }
 
-  html += "</div></div>";
+  html += "</div>";
+
+  /*
+  console.log('== start y ==');
+  console.log(html);
+  console.log('== end y ==');
+  */
 
   return html;
 
@@ -232,10 +229,18 @@ function drawBars(data,axis) {
 
   var item_height = 0;
 
+  var item_width;
+
+  var style_i;
+
   var html = "<div id=chart_content>";
 
   var style = "width:" + chart_width + "px;";
   style += "height:" + chart_height + "px;";
+
+  // calc to know how many width each column will have
+  item_width = (chart_width / data.length).toFixed(0) - 1;
+  style_i = "width:" + item_width + "px;";
 
   html += "<div id='chart_base' style='" + style + "'>";
 
@@ -248,8 +253,8 @@ function drawBars(data,axis) {
       if (axis[j] === data[i]) {
         var unit_style = "height:" + item_height + "px;";
         unit_style += "background-color:" + bar_color + ";";
-        html += "<div id='chart_columns' style='" + style_bar_width + "'>";
-        html += "<div id='unit_bar' style='" + unit_style + "'>";
+        html += "<div id='columns' style='" + style_i + "'>";
+        html += "<div id='bars' style='" + unit_style + "'>";
         html += data[i] + "</div></div>";
       }
     }
@@ -258,9 +263,13 @@ function drawBars(data,axis) {
 
   }
 
-  html += "</div></div>";
+  html += "</div>";
 
+  /*
+  console.log('== start chart ==');
   console.log(html);
+  console.log('== end chart ==');
+  */
 
   return html;
 
@@ -306,31 +315,18 @@ or jQuery element that the chart will get rendered into.
     //we start to draw our result html page
     result += "<div id=chart>";
 
-    result += drawAxisY(axis_y);     // draw the limits in axis y
+    // draw the limits in axis y
+    result += drawAxisY(axis_y);
 
     // draw the bars of the chart
     original_values = getSpecValue(data,'values');
     result += drawBars(original_values,axis_y);
 
-    result += drawAxisX(axis_x);     // draw the labels in axis x
-
-
-    /*
-    result += drawAxisX(axis_x);     // draw the labels in axis x
-    result += drawAxisY(axis_y);     // draw the limits in axis y
-    console.log(result);
-
-    // draw the bars of the chart
-    original_values = getSpecValue(data,'values');
-    result += drawBars(original_values,axis_y);
-    */
-    //result += drawAxisX(axis_x);     // draw the labels in axis x
-    //result += "<div id=axis_x_relative>teste</div>";
+    // draw the labels in axis x
+    result += drawAxisX(axis_x);
 
     // we guarantee that it will be a space between this and the next chart
     result += "</div><div id=chart>&nbsp;</div>";
-
-    //console.log(result);
 
     if (htmlElement === null) {
       document.write(result);
