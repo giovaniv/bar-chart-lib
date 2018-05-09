@@ -1,58 +1,31 @@
 
-  /* vai */
   #container {
     position: relative;
     width:100%;
     float: left;
   }
 
-  #chart {
-    clear: both;
-    display: inline-block;
-    width:100%;
-  }
-
-  #chart_y {
-    position:relative;
-    float:left;
-    width: 10%;
-    height:100%;
-  }
-
-  #chart_content {
-    position: relative;
-    float:left;
-    display: inline-block;
-    width: 100%;
-    height:100%;
-    border:1px solid orange;
-  }
-
-  /* vai */
   #chart_x {
     position: relative;
-    width: 300px;
+    width: 300px;                       /* option chart_width after runtime */
     height:100%;
   }
 
-  /* vai */
   #chart_base {
     position: relative;
     top: 0px;
     left: 0px;
-    width: 300px;   /* parametro */
-    height: 300px;  /* parametro */
-    border-left: 1px solid black;
-    border-bottom: 1px solid black;
-    background-color: whitesmoke;
+    width: 300px;                       /* option chart_width after runtime */
+    height: 300px;                      /* option chart_height after runtime */
+    border: 1px solid black;
+    background-color: whitesmoke;       /* option chart_backcolor */
     text-align: center;
   }
 
-  /* vai */
   #columns {
     position: relative;
     float: left;
-    width: 100px;               /* calculado */
+    width: 100px;                       /* calculated with chart_width parameter */
     height: 100%;
     border: 0px;
     text-align: center;
@@ -63,50 +36,38 @@
     align-content: center;
   }
 
-  /* vai */
   #bars {
     position: absolute;
     margin: auto;
-    width: 50px;          /* calculado */
+    width: 50px;                        /* calculated with chart_width parameter */
     bottom: 0px;
     left: 0;
     right: 0;
-    height: 30px;       /* calculado + parametro */
-    text-align: center;
-    background-color: black;
-  }
-
-  #axis_x {
-    position: absolute;
-    top: 310px; /* calculado */
-    left: 50px;
-    height: 30px;
-    width: 300px; /* parametro */
-    border: 0px;
+    height: 30px;                       /* calculated with chart_width and quantity parameters */
     text-align: center;
   }
 
-  /* vai */
   #slice_y {
     position: relative;
     float: left;
-    height: 60px;     /* height parameter / quantity of itens in axis y */
+    height: 60px;                       /* height parameter / quantity of itens in axis y */
     width: 100%;
     text-align: center;
   }
 
   table {
-    border: 1px solid black;
+    border: 0px solid black;
   }
 
-  /* vai */
   #y {
     width: 10%;
-    height:300px; /* height parameter */
+    height:300px;                       /* hoption chart_height after runtime */
+    background-color: silver;           /* option y_backcolor */
+    text-align: right;
   }
 
-  /* vai */
   #x {
-    width: 300px; /* width parameter */
+    width: 300px;                       /* option chart_width after runtime */
+    background-color: grey;             /* option x_backcolor */
   }
 

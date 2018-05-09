@@ -130,8 +130,9 @@ function createAxis(data, quant, lower, higher) {
   var dif = quant - data.length;
 
   // if we didnt need extra numbers we return the same array
-  if (dif < 0) {
-    return data;
+  if (dif <= 0) {
+    res = sortArray(data);
+    return res;
   }
 
   // we get the min and max number in the y-axis
@@ -170,24 +171,15 @@ function drawAxisX(data) {
   // style variation for each item inside
   // width of each item is defined by chart width / quantity of itens
   item_width = (chart_width / data.length).toFixed(0) - 1;
-  style = "width:" + chart_width + "px;background-color:black;";
+  style = "width:" + chart_width + "px;";
   style_i = "width:" + item_width + "px;";
 
-  // all of the content will be inside this div id
-  console.log(style);
-  //html = "&nbsp;<div id='chart_x' style='" + style + "'>";
-  html = "&nbsp;<div id=chart_x style='background-color:black;width:400px;'>";
+  html = "<td id=x style='" + style + "'><div id=chart_x style='" + style + "'>";
 
   for (var i=0; i<data.length; i++) {
     html += "<div id='columns' style='" + style_i + "'>" + data[i] + "</div>";
   }
-  html += "</div></div>";
-
-
-  console.log('== start x ==');
-  console.log(html);
-  console.log('== end x ==');
-
+  html += "</div></td>";
 
   return html;
 
@@ -200,26 +192,19 @@ function drawAxisY(data) {
   var html;
   var item_height;
 
-  // all of the content will be inside this div id
-  html = "<div id=chart_y>";
+  html = "<td id=y valign=bottom style='" + chart_height + "px;'>";
+  html += "<table style='height:100%;'>";
 
   item_height = chart_height / data.length;
-
   item_bar_height = item_height;
 
   style_i = "height:" + item_height + "px;";
 
   for (var i=0; i<data.length; i++) {
-    html += "<div id='slice_y' style='" + style_i + "'>" + data[i] + "</div>";
+    html += "<tr><td style='" + style_i + "'>" + data[i] + "</td></tr>";
   }
 
-  html += "</div>";
-
-  /*
-  console.log('== start y ==');
-  console.log(html);
-  console.log('== end y ==');
-  */
+  html += "</table></td>";
 
   return html;
 
@@ -233,7 +218,7 @@ function drawBars(data,axis) {
 
   var style_i;
 
-  var html = "<div id=chart_content>";
+  var html = "";
 
   var style = "width:" + chart_width + "px;";
   style += "height:" + chart_height + "px;";
@@ -242,7 +227,7 @@ function drawBars(data,axis) {
   item_width = (chart_width / data.length).toFixed(0) - 1;
   style_i = "width:" + item_width + "px;";
 
-  html += "<div id='chart_base' style='" + style + "'>";
+  html += "<td id='chart_base' style='" + style + "'>";
 
   for (var i=0; i<data.length; i++) {
 
@@ -263,13 +248,7 @@ function drawBars(data,axis) {
 
   }
 
-  html += "</div>";
-
-  /*
-  console.log('== start chart ==');
-  console.log(html);
-  console.log('== end chart ==');
-  */
+  html += "</td></tr><tr><td>&nbsp;</td>";
 
   return html;
 
@@ -313,7 +292,7 @@ or jQuery element that the chart will get rendered into.
     axis_y = createAxis(values, y_quantity, y_lower_limit, y_higher_limit);
 
     //we start to draw our result html page
-    result += "<div id=chart>";
+    result += "<table><tr>";
 
     // draw the limits in axis y
     result += drawAxisY(axis_y);
@@ -326,7 +305,7 @@ or jQuery element that the chart will get rendered into.
     result += drawAxisX(axis_x);
 
     // we guarantee that it will be a space between this and the next chart
-    result += "</div><div id=chart>&nbsp;</div>";
+    result += "</tr></table>";
 
     if (htmlElement === null) {
       document.write(result);
