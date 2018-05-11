@@ -227,7 +227,7 @@ function drawBars(data,axis) {
   item_width = (chart_width / data.length).toFixed(0) - 1;
   style_i = "width:" + item_width + "px;";
 
-  html += "<td id='chart_base' style='" + style + "'>";
+  html += "<td id='chart_base' valign=bottom style='" + style + "'><table><tr>";
 
   for (var i=0; i<data.length; i++) {
 
@@ -238,9 +238,10 @@ function drawBars(data,axis) {
       if (axis[j] === data[i]) {
         var unit_style = "height:" + item_height + "px;";
         unit_style += "background-color:" + bar_color + ";";
-        html += "<div id='columns' style='" + style_i + "'>";
+        html += "<td align=center valign=bottom style='" + style_i + "'>";
         html += "<div id='bars' style='" + unit_style + "'>";
-        html += data[i] + "</div></div>";
+
+        html += data[i] + "</div></td>";
       }
     }
 
@@ -248,7 +249,7 @@ function drawBars(data,axis) {
 
   }
 
-  html += "</td></tr><tr><td>&nbsp;</td>";
+  html += "</tr></table></td></tr><tr><td>&nbsp;</td>";
 
   return html;
 

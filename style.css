@@ -37,14 +37,11 @@
   }
 
   #bars {
-    position: absolute;
+    position: relative;
     margin: auto;
     width: 50px;                        /* calculated with chart_width parameter */
-    bottom: 0px;
-    left: 0;
-    right: 0;
     height: 30px;                       /* calculated with chart_width and quantity parameters */
-    text-align: center;
+    padding: 0px;
   }
 
   #slice_y {
