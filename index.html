@@ -15,16 +15,30 @@
     // Example A: Names and the respective ages of a group of people
     // Options: chart width, chart height, bar color,
     // axis y - quantity of values, axis y - lower limit, axis y - higher limit
+    // axis y - font family, font size, font color, background color
+    // axis x - font family, font size, font color, background color
+    // chart - background color, chart - font family, chart - font size
     var data = [ ['Heytor',9], ['Gisele',34], ['Adelina',70], ['Giovani',35], ['Patt',31] ];
-    var options = [300, 300, 'lightgreen', 10, 0, 100];
-    //drawBarChart(data,options,null);
+    var options = [300, 300, 'lightgreen',
+                  10, 0, 100,
+                  'tahoma', 11, 'red', 'white',
+                  'tahoma', 11, 'blue', 'white',
+                  'white', 'tahoma', 15  ];
+    drawBarChart(data,options,null);
 
     // ===============================================================
     // Example B: Martial Arts and the quantity of students in each one
     // Options: chart width, chart height, bar color,
     // axis y - quantity of values, axis y - lower limit, axis y - higher limit
-    var data2 = [ ['Judo',15], ['Krav Maga',7], ['Kung Fu',3], ['MMA',40], ['Jiu-Jitsu',25] ];
-    var options2 = [200, 200, 'blue', 10, 0, 50];
+    // axis y - font family, font size, font color, background color
+    // axis x - font family, font size, font color, background color
+    // chart - background color, chart - font family, chart - font size
+    var data2 = [ ['Judo',15], ['Karate',7], ['Boxing',3], ['MMA',40], ['Jiu-Jitsu',25] ];
+    var options2 = [200, 200, 'blue',
+                    10, 0, 50,
+                  'tahoma', 11, 'red', 'white',
+                  'tahoma', 11, 'blue', 'white',
+                  'white', 'tahoma', 15  ];
     drawBarChart(data2,options2,null);
     </script>
 

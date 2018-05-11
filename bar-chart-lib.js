@@ -5,6 +5,17 @@ var bar_color;        // color of each bar
 var y_quantity;       // quantity of itens in axis y (number)
 var y_lower_limit;    // lower limit of axis y (number)
 var y_higher_limit;   // higher limit of axis y (number)
+var y_font;           // axis y - font family
+var y_font_size;      // axis y - font size
+var y_color;          // axis y - font color
+var y_bgcolor;        // axis y - background color
+var x_font;           // axis y - font family
+var x_font_size;      // axis y - font size
+var x_color;          // axis y - font color
+var x_bgcolor;        // axis y - background color
+var chart_bgcolor;    // chart - background color
+var chart_font;       // chart - font family
+var chart_font_size;  // chart - font size
 
 // global variables to control the function
 var item_bar_height;  // height of each item bar in axis y
@@ -69,12 +80,23 @@ function validateOptions(options) {
 
       switch(i) {
 
-        case 0: chart_width = options[i];     break;
-        case 1: chart_height = options[i];    break;
-        case 2: bar_color = options[i];       break;
-        case 3: y_quantity = options[i];      break;
-        case 4: y_lower_limit = options[i];   break;
-        case 5: y_higher_limit = options[i];  break;
+        case 0: chart_width = options[i];       break;
+        case 1: chart_height = options[i];      break;
+        case 2: bar_color = options[i];         break;
+        case 3: y_quantity = options[i];        break;
+        case 4: y_lower_limit = options[i];     break;
+        case 5: y_higher_limit = options[i];    break;
+        case 6: y_font = options[i];            break;
+        case 7: y_font_size = options[i];       break;
+        case 8: y_color = options[i];           break;
+        case 9: y_bgcolor = options[i];         break;
+        case 10: x_font = options[i];           break;
+        case 11: x_font_size = options[i];      break;
+        case 12: x_color = options[i];          break;
+        case 13: x_bgcolor = options[i];        break;
+        case 14: chart_bgcolor = options[i];    break;
+        case 15: chart_font = options[i];       break;
+        case 16: chart_font_size = options[i];  break;
         default: break;
 
       }
@@ -172,14 +194,21 @@ function drawAxisX(data) {
   // width of each item is defined by chart width / quantity of itens
   item_width = (chart_width / data.length).toFixed(0) - 1;
   style = "width:" + chart_width + "px;";
-  style_i = "width:" + item_width + "px;";
 
-  html = "<td id=x style='" + style + "'><div id=chart_x style='" + style + "'>";
+  style += "font-family:" + x_font + ";";
+  style += "font-size:" + x_font_size + "px;";
+  style += "color:" + x_color + ";";
+  style += "background-color:" + x_bgcolor + ";";
+
+  style_i = "width:" + item_width + "px;";
+  style_i += "text-align:center";
+
+  html = "<td id=x style='" + style + "'><table width='100%'><tr>";
 
   for (var i=0; i<data.length; i++) {
-    html += "<div id='columns' style='" + style_i + "'>" + data[i] + "</div>";
+    html += "<td style='" + style_i + "'>" + data[i] + "</td>";
   }
-  html += "</div></td>";
+  html += "</tr></table></td>";
 
   return html;
 
@@ -191,9 +220,17 @@ function drawAxisY(data) {
 
   var html;
   var item_height;
+  var style;
 
-  html = "<td id=y valign=bottom style='" + chart_height + "px;'>";
-  html += "<table style='height:100%;'>";
+  style = "height:" + chart_height + "px;";
+  style += "font-family:" + y_font + ";";
+  style += "font-size:" + y_font_size + "px;";
+  style += "color:" + y_color + ";";
+  style += "background-color:" + y_bgcolor + ";";
+
+
+  html = "<td id=y valign=bottom style='" + style + "'>";
+  html += "<table width='100%'>";
 
   item_height = chart_height / data.length;
   item_bar_height = item_height;
@@ -222,6 +259,9 @@ function drawBars(data,axis) {
 
   var style = "width:" + chart_width + "px;";
   style += "height:" + chart_height + "px;";
+  style += "font-family:" + chart_font + ";";
+  style += "font-size:" + chart_font_size + "px;";
+  style += "background-color:" + chart_bgcolor + ";";
 
   // calc to know how many width each column will have
   item_width = (chart_width / data.length).toFixed(0) - 1;
@@ -240,7 +280,6 @@ function drawBars(data,axis) {
         unit_style += "background-color:" + bar_color + ";";
         html += "<td align=center valign=bottom style='" + style_i + "'>";
         html += "<div id='bars' style='" + unit_style + "'>";
-
         html += data[i] + "</div></td>";
       }
     }
