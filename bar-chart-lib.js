@@ -21,31 +21,21 @@ var chart_font_size;  // chart - font size
 var item_bar_height;  // height of each item bar in axis y
 var style_bar_width;   // style of each item bar in axis x
 
-
-// sort an array by numbers descending
-function sortArray(data) {
+// guarantee that the axis Y is clean and without any duplicate number
+function cleanArray(data) {
 
   var res = [];
-  var num = data[0];
-  var pos;
+  var num;
 
-  while (res.length != data.length) {
-
-    for (var i=0; i<data.length; i++) {
-
-      if ( num < data[i] && (res.indexOf(data[i]) < 0) ) {
-        num = data[i];
-      }
-
+  for (i=0; i < data.length; i++) {
+    if (num != data[i]) {
+      num = data[i];
+      res.push(num);
     }
-
-    res.push(num);
-    num = 0;
   }
 
-  res.pop();
-
   return res;
+
 }
 
 // create random numbers how many times parameters ask
@@ -156,7 +146,7 @@ function createAxis(data, quant, lower, higher) {
   var total = 0;
 
   // we clean the numbers that repeat inside de array
-  res = sortArray(res);
+  res = data.sort(sortDesc);
 
   // how many itens we need to include
   var dif = quant - res.length;
@@ -185,6 +175,7 @@ function createAxis(data, quant, lower, higher) {
     dif -= 1;
   }
 
+  res = cleanArray(res);
   res = createRandomNumbers(res,dif);
   res.sort(sortDesc);
 
