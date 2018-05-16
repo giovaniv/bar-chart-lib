@@ -1,8 +1,14 @@
 
+  body {
+    font-family: verdana;
+    font-size: 12px;
+  }
+
   #container {
-    position: relative;
-    width:100%;
-    float: left;
+    position: absolute;
+    border:1px solid black;
+    top: 2000px;
+    left: 10px;
   }
 
   #chart_base {

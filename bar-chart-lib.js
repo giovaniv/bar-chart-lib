@@ -36,11 +36,14 @@ function sortArray(data) {
       if ( num < data[i] && (res.indexOf(data[i]) < 0) ) {
         num = data[i];
       }
+
     }
 
     res.push(num);
     num = 0;
   }
+
+  res.pop();
 
   return res;
 }
@@ -141,25 +144,32 @@ function getLimitNumber(data,type) {
   return res;
 }
 
+// sort array descending
+function sortDesc(a,b) {
+  return b-a;
+}
+
 // function that creates the array for a specific axis
 function createAxis(data, quant, lower, higher) {
 
   var res = data;
-  var sorted = [];
   var total = 0;
 
+  // we clean the numbers that repeat inside de array
+  res = sortArray(res);
+
   // how many itens we need to include
-  var dif = quant - data.length;
+  var dif = quant - res.length;
 
   // if we didnt need extra numbers we return the same array
-  if (dif <= 0) {
-    res = sortArray(data);
+  if (dif <= 0 || quant > higher) {
+    res.sort(sortDesc);
     return res;
   }
 
   // we get the min and max number in the y-axis
-  var min = getLimitNumber(data,'min');
-  var max = getLimitNumber(data,'max');
+  var min = getLimitNumber(res,'min');
+  var max = getLimitNumber(res,'max');
 
   // if the lower limit is lower than the min value,
   // we push this number to the return array
@@ -176,7 +186,7 @@ function createAxis(data, quant, lower, higher) {
   }
 
   res = createRandomNumbers(res,dif);
-  res = sortArray(res);
+  res.sort(sortDesc);
 
   return res;
 

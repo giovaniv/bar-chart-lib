@@ -2,10 +2,16 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Demo</title>
+    <title>bar-chart-lib demonstration</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+
+    <b>BAR-CHART-LIB</b> Demonstration by Giovani Vasconcelos
+
+    <p>
+
+    <div id=container>&nbsp;</div>
 
     <script src="bar-chart-lib.js"></script>
 
@@ -19,10 +25,10 @@
     // axis x - font family, font size, font color, background color
     // chart - background color, chart - font family, chart - font size
     var data = [ ['Heytor',9], ['Gisele',34], ['Adelina',70], ['Giovani',35], ['Patt',31] ];
-    var options = [300, 300, 'lightgreen',
+    var options = [350, 300, 'lightgreen',
                   10, 0, 100,
-                  'tahoma', 11, 'red', 'white',
-                  'tahoma', 11, 'blue', 'white',
+                  'tahoma', 11, 'black', 'white',
+                  'tahoma', 11, 'black', 'white',
                   'white', 'tahoma', 15  ];
     drawBarChart(data,options,null);
 
@@ -33,13 +39,45 @@
     // axis y - font family, font size, font color, background color
     // axis x - font family, font size, font color, background color
     // chart - background color, chart - font family, chart - font size
-    var data2 = [ ['Judo',15], ['Karate',7], ['Boxing',3], ['MMA',40], ['Jiu-Jitsu',25] ];
-    var options2 = [200, 200, 'blue',
+    var data = [ ['Judo',15], ['Karate',7], ['Boxing',3], ['MMA',40], ['Jiu-Jitsu',25] ];
+    var options = [200, 200, 'white',
                     10, 0, 50,
-                  'tahoma', 11, 'red', 'white',
-                  'tahoma', 11, 'blue', 'white',
-                  'white', 'tahoma', 15  ];
-    drawBarChart(data2,options2,null);
+                  'tahoma', 12, 'gray', 'white',
+                  'tahoma', 12, 'gray', 'white',
+                  'blue', 'tahoma', 15  ];
+    drawBarChart(data,options,null);
+
+
+    // ===============================================================
+    // Example C: Countries x World Cup Titles
+    // Options: chart width, chart height, bar color,
+    // axis y - quantity of values, axis y - lower limit, axis y - higher limit
+    // axis y - font family, font size, font color, background color
+    // axis x - font family, font size, font color, background color
+    // chart - background color, chart - font family, chart - font size
+    var data = [ ['Brazil',5], ['Germany',4], ['Italy',4], ['Argentina',2] ];
+    var options = [300, 300, 'moccasin',
+                    10, 0, 10,
+                  'arial', 12, 'white', 'black',
+                  'arial', 12, 'white', 'black',
+                  'orange', 'verdana', 20  ];
+    drawBarChart(data,options,null);
+
+
+    // ===============================================================
+    // Example D: Students x Grades (in container DIV)
+    // Options: chart width, chart height, bar color,
+    // axis y - quantity of values, axis y - lower limit, axis y - higher limit
+    // axis y - font family, font size, font color, background color
+    // axis x - font family, font size, font color, background color
+    // chart - background color, chart - font family, chart - font size
+    var data = [ ['Anne',5], ['Rick',6], ['Jean',8] ];
+    var options = [300, 300, 'silver',
+                    10, 0, 10,
+                  'verdana', 11, 'white', 'black',
+                  'verdana', 11, 'white', 'black',
+                  'yellow', 'verdana', 11  ];
+    drawBarChart(data,options,"container");
     </script>
 
 </body>
