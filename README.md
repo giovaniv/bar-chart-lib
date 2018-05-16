@@ -4,14 +4,11 @@
 # Screenshots
 Examples of charts that you can create with this API:
 
-![Sample 1]
-(https://github.com/giovaniv/bar-chart-lib/blob/master/images/sample1.png)
+![Sample 1](/images/sample1.png)
 
-![Sample 2]
-(https://github.com/giovaniv/bar-chart-lib/blob/master/images/sample2.png)
+![Sample 2](images/sample2.png)
 
-![Sample 3]
-(https://github.com/giovaniv/bar-chart-lib/blob/master/images/sample3.png)
+![Sample 3](images/sample3.png)
 
 # How to Use
 Under Construction
