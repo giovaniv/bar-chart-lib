@@ -24,7 +24,34 @@ Where Bob = 10, Rick = 15 and Sarah = 20;
 `element`: Will be `null` when you just want to display the bar chart in the html page but if you need to show this chart in some specific html element, just put this name on it.
 
 # Options Parameters
-Under Construction
+
+    var options = {
+
+      // chart
+      chart_width: 350,
+      chart_height: 300,
+      chart_font_face: 'verdana',
+      chart_font_color: 'green',
+      chart_font_size: 12,
+      chart_bgcolor: 'white',
+      bar_bgcolor: 'lightgreen',
+
+      // axis-x
+      x_font_face: 'verdana',
+      x_font_color: 'white',
+      x_font_size: 11,
+      x_bgcolor: 'black',
+
+      // axis-y
+      y_quantity: 10,
+      y_low_limit: 0,
+      y_high_limit: 100,
+      y_font_face: 'verdana',
+      y_font_color: 'white',
+      y_font_size: 11,
+      y_bgcolor: 'black'
+
+    }
 
 # Issues / Bugs
 - ESLint support (i couldn't setup this correctly yet. I know, this is sad);
