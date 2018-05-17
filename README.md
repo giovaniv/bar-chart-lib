@@ -53,6 +53,17 @@ Where Bob = 10, Rick = 15 and Sarah = 20;
 
     }
 
+Where:
+ 
+- `chart_width` = Width of all the chart area (in pixels)
+- `chart_height` = Height of all the chart area (in pixels)
+- `chart_font_face` = Font-family used in all the chart area (example: Verdana, Tahoma, Arial)
+- `chart_font_color` = Color of this font-family (RGB, name or HEX)
+- `chart_font_size` = Size of the font-family (in pixels)
+- `chart_bgcolor` = Color of the background of the chart area
+- `bar_bgcolor` = Color of the bars of the chart area
+
+
 # Issues / Bugs
 - ESLint support (i couldn't setup this correctly yet. I know, this is sad);
 
