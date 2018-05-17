@@ -25,6 +25,8 @@ Where Bob = 10, Rick = 15 and Sarah = 20;
 
 # Options Parameters
 
+Example:
+
     var options = {
 
       // chart
@@ -63,6 +65,19 @@ Where:
 - `chart_bgcolor` = Color of the background of the chart area
 - `bar_bgcolor` = Color of the bars of the chart area
 
+- `x_font_face` = Font-family of the Axis X
+- `x_font_color` = Color of the font in Axis X
+- `x_font_size` = Size of the font in Axis X
+- `x_bgcolor` = Background color of the Axis X
+
+- `y_font_face` = Font-family of the Axis Y
+- `y_font_color` = Color of the font in Axis Y
+- `y_font_size` = Size of the font in Axis Y
+- `y_bgcolor` = Background color of the Axis Y
+
+- `y_quantity` = Quantity of values in Axis Y
+- `y_low_limit` = Lower limit in Axis Y (should be higher or equal 0)
+- `y_high_limit` = Higher limit in Axis Y
 
 # Issues / Bugs
 - ESLint support (i couldn't setup this correctly yet. I know, this is sad);
@@ -72,6 +87,7 @@ Where:
 - Increase the options for the chart, like title and space between another chart;
 - Possibility to manipulate the axis, inverting the chart;
 - Possibility to insert multiple values for each bar;
+- Consider negative numbers in Axis of values;
 
 # External Resources
 [W3Schools - JavaScript](https://www.w3schools.com/js/default.asp)
