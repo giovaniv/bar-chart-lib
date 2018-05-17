@@ -7,7 +7,7 @@
 </head>
 <body>
 
-    <b>BAR-CHART-LIB</b> Demonstration by Giovani Vasconcelos
+    <center><b>BAR-CHART-LIB</b> Demonstration by Giovani Vasconcelos</center>
 
     <p>
 
@@ -20,48 +20,108 @@
 
     // ===============================================================
     // Example A: Names and the respective ages of a group of people
-    // Options: chart width, chart height, bar color,
-    // axis y - quantity of values, axis y - lower limit, axis y - higher limit
-    // axis y - font family, font size, font color, background color
-    // axis x - font family, font size, font color, background color
-    // chart - background color, chart - font family, chart - font size
+
     var data = [ ['Heytor',9], ['Gisele',34], ['Adelina',70], ['Giovani',35], ['Patt',31] ];
-    var options = [350, 300, 'lightgreen',
-                  10, 0, 100,
-                  'tahoma', 11, 'black', 'white',
-                  'tahoma', 11, 'black', 'white',
-                  'white', 'tahoma', 15  ];
-    drawBarChart(data,options,null);
+
+    var options = {
+
+      // chart
+      chart_width: 350,
+      chart_height: 300,
+      chart_font_face: 'verdana',
+      chart_font_color: 'green',
+      chart_font_size: 12,
+      chart_bgcolor: 'white',
+      bar_bgcolor: 'lightgreen',
+
+      // axis-x
+      x_font_face: 'verdana',
+      x_font_color: 'white',
+      x_font_size: 11,
+      x_bgcolor: 'black',
+
+      // axis-y
+      y_quantity: 10,
+      y_low_limit: 0,
+      y_high_limit: 100,
+      y_font_face: 'verdana',
+      y_font_color: 'white',
+      y_font_size: 11,
+      y_bgcolor: 'black'
+
+    }
+
+    drawBarChart(data, options, null);
 
     // ===============================================================
     // Example B: Martial Arts and the quantity of students in each one
-    // Options: chart width, chart height, bar color,
-    // axis y - quantity of values, axis y - lower limit, axis y - higher limit
-    // axis y - font family, font size, font color, background color
-    // axis x - font family, font size, font color, background color
-    // chart - background color, chart - font family, chart - font size
+
     var data = [ ['Judo',15], ['Karate',7], ['Boxing',3], ['MMA',40], ['Jiu-Jitsu',25] ];
-    var options = [200, 200, 'white',
-                    10, 0, 50,
-                  'tahoma', 12, 'gray', 'white',
-                  'tahoma', 12, 'gray', 'white',
-                  'blue', 'tahoma', 15  ];
+
+    var options = {
+
+      // chart
+      chart_width: 200,
+      chart_height: 200,
+      chart_font_face: 'tahoma',
+      chart_font_color: 'white',
+      chart_font_size: 15,
+      chart_bgcolor: 'blue',
+      bar_bgcolor: 'white',
+
+      // axis-x
+      x_font_face: 'tahoma',
+      x_font_color: 'gray',
+      x_font_size: 12,
+      x_bgcolor: 'white',
+
+      // axis-y
+      y_quantity: 10,
+      y_low_limit: 0,
+      y_high_limit: 50,
+      y_font_face: 'tahoma',
+      y_font_color: 'gray',
+      y_font_size: 12,
+      y_bgcolor: 'white'
+
+    }
+
     drawBarChart(data,options,null);
 
 
     // ===============================================================
     // Example C: Countries x World Cup Titles
-    // Options: chart width, chart height, bar color,
-    // axis y - quantity of values, axis y - lower limit, axis y - higher limit
-    // axis y - font family, font size, font color, background color
-    // axis x - font family, font size, font color, background color
-    // chart - background color, chart - font family, chart - font size
+
     var data = [ ['Brazil',5], ['Germany',4], ['Italy',4], ['Argentina',2] ];
-    var options = [300, 300, 'moccasin',
-                    10, 0, 10,
-                  'arial', 12, 'white', 'black',
-                  'arial', 12, 'white', 'black',
-                  'orange', 'verdana', 20  ];
+
+    var options = {
+
+      // chart
+      chart_width: 300,
+      chart_height: 300,
+      chart_font_face: 'verdana',
+      chart_font_color: 'white',
+      chart_font_size: 20,
+      chart_bgcolor: 'moccasin',
+      bar_bgcolor: 'orange',
+
+      // axis-x
+      x_font_face: 'arial',
+      x_font_color: 'white',
+      x_font_size: 12,
+      x_bgcolor: 'black',
+
+      // axis-y
+      y_quantity: 10,
+      y_low_limit: 0,
+      y_high_limit: 10,
+      y_font_face: 'arial',
+      y_font_color: 'white',
+      y_font_size: 12,
+      y_bgcolor: 'black'
+
+    }
+
     drawBarChart(data,options,null);
 
 
@@ -73,11 +133,35 @@
     // axis x - font family, font size, font color, background color
     // chart - background color, chart - font family, chart - font size
     var data = [ ['Anne',5], ['Rick',6], ['Jean',8] ];
-    var options = [300, 300, 'silver',
-                    10, 0, 10,
-                  'verdana', 11, 'white', 'black',
-                  'verdana', 11, 'white', 'black',
-                  'yellow', 'verdana', 11  ];
+
+      var options = {
+
+      // chart
+      chart_width: 300,
+      chart_height: 300,
+      chart_font_face: 'verdana',
+      chart_font_color: 'black',
+      chart_font_size: 11,
+      chart_bgcolor: 'yellow',
+      bar_bgcolor: 'silver',
+
+      // axis-x
+      x_font_face: 'verdana',
+      x_font_color: 'white',
+      x_font_size: 11,
+      x_bgcolor: 'black',
+
+      // axis-y
+      y_quantity: 10,
+      y_low_limit: 0,
+      y_high_limit: 10,
+      y_font_face: 'verdana',
+      y_font_color: 'white',
+      y_font_size: 11,
+      y_bgcolor: 'black'
+
+    }
+
     drawBarChart(data,options,"container");
     </script>
 
